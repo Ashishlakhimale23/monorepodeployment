@@ -1,0 +1,46 @@
+# Dependencies
+**/node_modules
+**/.pnp
+**/.pnp.js
+
+# Testing
+**/coverage
+
+# Next.js
+**/.next/
+**/out/
+
+# Build outputs
+**/build
+**/dist
+
+# Turbo
+**/.turbo
+
+# Cache
+**/.cache
+**/tsconfig.tsbuildinfo
+
+# Environment
+**/.env*
+!.env.example
+
+# Version control
+.git
+.gitignore
+
+# Docker
+Docker/*
+!Docker/Dockerfile.frontend
+!Docker/Dockerfile.httpserver
+!Docker/Dockerfile.wsserver
+docker-compose.yml
+
+# OS files
+.DS_Store
+*.pem
+
+# Logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*

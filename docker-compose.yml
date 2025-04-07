@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: postgresdb
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ashishlakhimale23
+      - POSTGRES_DB=monorepo-deployment
+    ports: 
+      - 5432:5432
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+
+  http-server: 
+    build:
+      context: .
+      dockerfile: ./Docker/Dockerfile.httpserver
+      args: 
+        DB_URL: postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    container_name: httpserver
+    environment: 
+      - DATABASE_URL=postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    ports:
+      - 8000:8000
+    depends_on: 
+      - postgres
+
+  ws-server: 
+    build:
+      context: .
+      dockerfile: ./Docker/Dockerfile.wsserver
+      args: 
+        DB_URL: postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    container_name: wsserver
+    environment: 
+      - DATABASE_URL=postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    ports:
+      - 8080:8080
+    depends_on: 
+      - postgres
+
+  frontend: 
+    build: 
+      context: .
+      dockerfile: ./Docker/Dockerfile.frontend
+      args: 
+        DB_URL=postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    container_name: frontend
+    environment: 
+      - DATABASE_URL=postgresql://postgres:ashishlakhimale23@postgresdb:5432/monorepo-deployment
+    depends_on: 
+      - postgres
+        
+    ports: 
+      - 3000:3000
+
+volumes:
+  postgres_data:

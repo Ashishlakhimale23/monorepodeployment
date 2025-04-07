@@ -1,0 +1,20 @@
+FROM node:20-alpine
+
+ARG DB_URL
+ENV DATABASE_URL=${DB_URL}
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY turbo.json ./
+COPY packages ./packages
+COPY ./apps/web ./apps/web
+
+RUN npm install
+
+RUN npm run db:generate
+
+RUN echo "Database URL is: ${DATABASE_URL}"
+RUN cd packages/db && npm run build
+RUN DATABASE_URL=${DATABASE_URL} cd ./apps/web && npm run build
+CMD ["npm", "run", "start:web"]
