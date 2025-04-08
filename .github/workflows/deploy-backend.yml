@@ -33,7 +33,6 @@ jobs:
           port: 22
           debug: true
           script: |
-           
             docker run --name httpserver -d -p 8000:8000 ashishlakhimale/monorepodeployment:${{github.sha}}
                
             
