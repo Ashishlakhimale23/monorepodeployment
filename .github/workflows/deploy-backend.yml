@@ -22,7 +22,7 @@ jobs:
           file: ./Docker/Dockerfile.httpserver
           push: true
           build-args: | 
-             DB_URL=${{secrets.DATABASE_URL}}
+            DB_URL=${{secrets.DATABASE_URL}}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/monorepodeployment:${{ github.sha }}
       
       - name: executing remote ssh commands using key
@@ -35,7 +35,7 @@ jobs:
           port: 22
           debug: true
           script: |
-           docker stop httpserver
-           docker run --name httpserver -d -p 8000:8000 ashishlakhimale/monorepodeployment:${{github.sha}}
+            docker stop httpserver
+            docker run --name httpserver -d -p 8000:8000 ashishlakhimale/monorepodeployment:${{github.sha}}
                
             
