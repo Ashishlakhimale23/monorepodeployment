@@ -22,5 +22,5 @@ jobs:
           context: .
           file: ./Docker/Dockerfile.httpserver
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpserver:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/monorepodeployment:${{ github.sha }}
 
