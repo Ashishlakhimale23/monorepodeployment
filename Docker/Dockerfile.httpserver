@@ -2,6 +2,7 @@ FROM node:20-alpine
 
 WORKDIR /app
 ARG DB_URL
+ENV DATABASE_URL =${DB_URL}
 
 COPY packages packages
 COPY package-lock.json package-lock.json 
@@ -14,5 +15,5 @@ RUN npm install
 RUN DATABASE_URL=${DB_URL} npm run db:generate
 RUN npm run build 
 
-CMD [ "npm","run","start:http-server" ]
+CMD ["npm","run","start:http-server"]
 
