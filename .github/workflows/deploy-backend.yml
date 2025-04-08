@@ -18,7 +18,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-
           file: ./Docker/Dockerfile.httpserver
           push: true
           tags: monorepodeployment/httpserver${{ github.sha }}
