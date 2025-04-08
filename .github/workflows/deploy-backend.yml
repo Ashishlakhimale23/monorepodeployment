@@ -19,4 +19,4 @@ jobs:
           context: .
           file: ./Docker/Dockerfile.httpserver
           push: true
-          tags: monorepodeployment/httpserver${{ github.sha }}
+          tags: monorepodeployment/httpserver:${{ github.sha }}
