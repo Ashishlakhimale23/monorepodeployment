@@ -1,6 +1,7 @@
 FROM node:20-alpine
-ARG DB_URL
+
 WORKDIR /app
+ARG DB_URL
 
 COPY packages packages
 COPY package-lock.json package-lock.json 
