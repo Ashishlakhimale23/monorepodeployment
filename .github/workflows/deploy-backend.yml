@@ -25,6 +25,7 @@ jobs:
       
       - name: executing remote ssh commands using key
         uses: appleboy/ssh-action@master
+        
         with:
           host: 54.153.114.81
           username: ubuntu
