@@ -21,8 +21,8 @@ jobs:
           context: .
           file: ./Docker/Dockerfile.httpserver
           push: true
-          build-args: 
-            DB_URL:${{secrets.DATABASE_URL}}
+          build-args: | 
+             DB_URL=${{secrets.DATABASE_URL}}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/monorepodeployment:${{ github.sha }}
       
       - name: executing remote ssh commands using key
