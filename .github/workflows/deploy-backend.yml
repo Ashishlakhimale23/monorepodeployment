@@ -25,7 +25,7 @@ jobs:
       - name : ssh into vm 
         uses : appleboy/ssh-action@v0.1.5
         with : 
-          host : 
+          host : 52.53.160.84
           key : ${{secrets.PRIVATE_SECRET_KEY}}
           port : 22
           debug : true
