@@ -15,7 +15,7 @@ jobs:
       uses : docker/build-push-action@v4
       with : 
         context : .
-        Dockerfile : ./Docker/Dockerfile.httpserver 
+        dockerfile : ./Docker/Dockerfile.httpserver 
         build-args : |
           DB_URL= ${{secrets.DATABASE_URL}}
         tags : ${{secrets.DOCKERHUB_USERNAME}}/monorepodeployment:${{github.sha}}
